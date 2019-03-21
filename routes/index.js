@@ -11,8 +11,8 @@ router.put('/:userId', userController.update)
 router.delete('/:userId', userController.delete)
 
 router.get('/:userId/medicines', medicineController.index)
-// router.post('/:userId/medicines', medicineController.create)
-router.get('/:userId/medicines/:medicineId', medicineController.show)
+router.post('/:userId/medicines', medicineController.create)
+// router.get('/:userId/medicines/:medicineId', medicineController.show)
 // router.put('/:userId/medicines/:medicineId', medicineController.update)
 // router.delete('/:userId/medicines/:medicineId', medicineController.delete)
 
