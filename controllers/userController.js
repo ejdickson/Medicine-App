@@ -16,12 +16,10 @@ const userController = {
             const newUser = req.body
             const savedUser = await User.create(newUser)
             res.json(savedCreature)
-            // res.send(`Test Create`)
         } catch (err) {
             console.log(err)
             res.status(500).json(err)
         }
-        // console.log(`Test Create`)
         // const newUser = new User(req.body.user)
        
         // newUser
@@ -33,16 +31,25 @@ const userController = {
         //         console.log(err)
         //     })
     },
-    show: (req, res) => {
-        User
-            .findById(req.params.userId)
-            .then((user) => {
-                user.medicines = user.medicines.reverse()
-                res.json(user)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+    show: async (req, res) => {
+        try {
+            const userId = req.params.id
+            const user = await User.findById(userId)
+            res.json(user)
+        } catch (err) {
+            console.log(err)
+            res.json(err)
+        }
+        // User
+        //     .findById(req.params.id)
+        //     .then((user) => {
+        //         console.log(user)
+        //         // user.medicines = user.medicines.reverse()
+        //         // res.json(user)
+        //     })
+        //     .catch((err) => {
+        //         console.log(err)
+        //     })
     },
 }
 
