@@ -12,7 +12,7 @@ const medicineController = {
             .catch((err) => {
                 console.log(err)
             })
-    }
+    },
 }
 
 module.exports = medicineController
