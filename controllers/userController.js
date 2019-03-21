@@ -20,16 +20,6 @@ const userController = {
             console.log(err)
             res.status(500).json(err)
         }
-        // const newUser = new User(req.body.user)
-       
-        // newUser
-        //     .save()
-        //     .then((user) => {
-        //         res.json(user)
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     })
     },
     show: async (req, res) => {
         try {
@@ -40,16 +30,6 @@ const userController = {
             console.log(err)
             res.json(err)
         }
-        // User
-        //     .findById(req.params.id)
-        //     .then((user) => {
-        //         console.log(user)
-        //         // user.medicines = user.medicines.reverse()
-        //         // res.json(user)
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     })
     },
     update: async (req, res) => {
         try {
