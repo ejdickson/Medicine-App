@@ -8,7 +8,7 @@ router.get('/', userController.index)
 router.post('/', userController.create)
 router.get('/:id', userController.show)
 router.put('/:id', userController.update)
-// router.delete('/:id', userController.delete)
+router.delete('/:id', userController.delete)
 
 // router.get('/:id/medicines', medicineController.index)
 // router.post('/:id/medicines', medicineController.create)
