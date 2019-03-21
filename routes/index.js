@@ -5,8 +5,8 @@ const userController = require('../controllers/userController')
 const medicineController = require('../controllers/medicineController')
 
 router.get('/', userController.index)
-// router.post('/', userController.create)
-// router.get('/:id', userController.show)
+router.post('/', userController.create)
+router.get('/:id', userController.show)
 // router.put('/:id', userController.update)
 // router.delete('/:id', userController.delete)
 

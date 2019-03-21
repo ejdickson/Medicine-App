@@ -3,12 +3,16 @@ const logger = require('morgan')
 const app = express()
 
 const routes = require('./routes/index')
+const userController = require('./controllers/userController')
+const medicineController = require('./controllers/medicineController')
 
 app.use(logger('dev'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.get('/', routes)
+// app.use('/api/users', userController)
+
+app.use('/', routes)
 
 const PORT = process.env.PORT || 3001
 
