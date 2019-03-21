@@ -56,14 +56,14 @@ const medicineController = {
         User
             .findById(req.params.userId)
             .then(user => {
-                const keepMedicines = user.medicines.filter(medicine => {
-                    medicine._id.toString() !== req.params.medicineId
+                const medicineId = req.params.medicineId
+                const filterMedicines = user.medicines.filter((medicine) => {
+                    medicine._id != req.params.medicineId
                 })
-                console.log(keepMedicines)
-                user.medicines = keepMedicines
-                user.save().then(user => {
-                    console.log(user.medicines)
-                    res.json(user.medicines)
+                user.medicines = filterMedicines
+                user.save()
+                res.json({
+                    msg: `Successfully Deleted ${medicineId}`
                 })
             })
             .catch((err) => {
