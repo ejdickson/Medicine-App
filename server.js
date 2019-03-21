@@ -3,16 +3,17 @@ const logger = require('morgan')
 const app = express()
 
 const routes = require('./routes/index')
-const userController = require('./controllers/userController')
-const medicineController = require('./controllers/medicineController')
 
 app.use(logger('dev'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(express.static(__dirname + '/client/build'))
 
-// app.use('/api/users', userController)
+app.use('/api/v1', routes)
 
-app.use('/', routes)
+app.get('/*', (req,res) => {
+    res.sendFile(__dirname + '/client/build/index.html')
+})
 
 const PORT = process.env.PORT || 3001
 
