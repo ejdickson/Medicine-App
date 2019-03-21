@@ -27,7 +27,18 @@ const medicineController = {
             .catch((err) => {
                 console.log(err)
             })
-    }
+    },
+    show: (req, res) => {
+        User
+            .findById(req.params.userId)
+            .then(user => {
+                const singleMedicine = user.medicines.filter(medicine => medicine._id.toString() === req.params.medicineId)
+                res.json(singleMedicine)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    },
 }
 
 module.exports = medicineController
