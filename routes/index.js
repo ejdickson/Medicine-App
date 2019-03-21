@@ -6,14 +6,14 @@ const medicineController = require('../controllers/medicineController')
 
 router.get('/', userController.index)
 router.post('/', userController.create)
-router.get('/:id', userController.show)
-router.put('/:id', userController.update)
-router.delete('/:id', userController.delete)
+router.get('/:userId', userController.show)
+router.put('/:userId', userController.update)
+router.delete('/:userId', userController.delete)
 
-router.get('/:id/medicines', medicineController.index)
-router.post('/:id/medicines', medicineController.create)
-// router.get('/:id/medicines/:id', medicineController.show)
-// router.put('/:id/medicines/:id', medicineController.update)
-// router.delete('/:id/medicines/:id', medicineController.delete)
+router.get('/:userId/medicines', medicineController.index)
+// router.post('/:userId/medicines', medicineController.create)
+// router.get('/:userId/medicines/:medicineId', medicineController.show)
+// router.put('/:userId/medicines/:medicineId', medicineController.update)
+// router.delete('/:userId/medicines/:medicineId', medicineController.delete)
 
 module.exports = router

@@ -15,7 +15,7 @@ const userController = {
         try {
             const newUser = req.body
             const savedUser = await User.create(newUser)
-            res.json(savedCreature)
+            res.json(savedUser)
         } catch (err) {
             console.log(err)
             res.status(500).json(err)
@@ -23,7 +23,7 @@ const userController = {
     },
     show: async (req, res) => {
         try {
-            const userId = req.params.id
+            const userId = req.params.userId
             const user = await User.findById(userId)
             res.json(user)
         } catch (err) {
@@ -33,7 +33,7 @@ const userController = {
     },
     update: async (req, res) => {
         try {
-            const userId = req.params.id
+            const userId = req.params.userId
             const updatedUser = req.body
             const savedUser = await User.findByIdAndUpdate(userId, updatedUser)
             res.json(savedUser)
@@ -44,7 +44,7 @@ const userController = {
     },
     delete: async (req, res) => {
         try {
-            const userId = req.params.id
+            const userId = req.params.userId
             await User.findByIdAndRemove(userId)
             res.json({
                 msg: `Successfully Deleted ${userId}`
