@@ -39,6 +39,19 @@ const medicineController = {
                 console.log(err)
             })
     },
+    update: (req, res) => {
+        User
+            .findById(req.params.userId)
+            .then(user => {
+                const updatedMedicine = user.medicines.id(req.params.medicineId)
+                updatedMedicine.set(req.body)
+                user.save()
+                res.json(updatedMedicine)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    },
 }
 
 module.exports = medicineController
