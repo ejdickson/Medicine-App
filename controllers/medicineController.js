@@ -32,7 +32,7 @@ const medicineController = {
         User
             .findById(req.params.userId)
             .then(user => {
-                const singleMedicine = user.medicines.filter(medicine => medicine._id.toString() === req.params.medicineId)
+                const singleMedicine = user.medicines.id(req.params.medicineId)
                 res.json(singleMedicine)
             })
             .catch((err) => {
@@ -52,6 +52,24 @@ const medicineController = {
                 console.log(err)
             })
     },
+    delete: (req, res) => {
+        User
+            .findById(req.params.userId)
+            .then(user => {
+                const keepMedicines = user.medicines.filter(medicine => {
+                    medicine._id.toString() !== req.params.medicineId
+                })
+                console.log(keepMedicines)
+                user.medicines = keepMedicines
+                user.save().then(user => {
+                    console.log(user.medicines)
+                    res.json(user.medicines)
+                })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 }
 
 module.exports = medicineController
