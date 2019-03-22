@@ -56,7 +56,6 @@ class UsersList extends Component {
                     users: usersList
                 })
             })
-        this.setState()
     }
 
     render() {
