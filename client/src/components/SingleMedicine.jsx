@@ -78,7 +78,7 @@ class SingleMedicine extends Component {
                                 id="name"
                                 type="text"
                                 name="name"
-                                onChange={this.state.handleChange}
+                                onChange={this.handleChange}
                                 value={this.state.medicine.name}
                             />
                         </div>
@@ -88,7 +88,7 @@ class SingleMedicine extends Component {
                                 id="description"
                                 type="text"
                                 name="description"
-                                onChange={this.state.handleChange}
+                                onChange={this.handleChange}
                                 value={this.state.medicine.description}
                             />
                         </div>
@@ -98,7 +98,7 @@ class SingleMedicine extends Component {
                                 id="dosage"
                                 type="text"
                                 name="dosage"
-                                onChange={this.state.handleChange}
+                                onChange={this.handleChange}
                                 value={this.state.medicine.dosage}
                             />
                         </div>
@@ -108,7 +108,7 @@ class SingleMedicine extends Component {
                                 id="amountRemaining"
                                 type="text"
                                 name="amountRemaining"
-                                onChange={this.state.handleChange}
+                                onChange={this.handleChange}
                                 value={this.state.medicine.amountRemaining}
                             />
                         </div>
