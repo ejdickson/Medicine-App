@@ -9,10 +9,10 @@ Trello Board: https://trello.com/b/ne7pJ08o/project-3-medicine-app
 ### Links To Wireframes
 
 Entity Relationship Diagram
-<img src= './public/images/Wireframing/ERD.png' alt='Entity Relationship Diagram'>
+<img src= './Wireframing/ERD.png' alt='Entity Relationship Diagram'>
 
 
-### Technologies Used in the project, such as 
+### Technologies Used in the project:
 * Mongo
 * Express 
 * React 
