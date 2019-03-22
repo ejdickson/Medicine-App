@@ -4,6 +4,7 @@ import axios from 'axios'
 
 class SingleUser extends Component {
     state = {
+        userId: this.props.match.params.userId,
         currentUser: {
             _id: '',
             email: '',
@@ -17,7 +18,7 @@ class SingleUser extends Component {
 
     componentDidMount = () => {
         axios
-            .get(`/api/v1/${this.props.match.params.id}`)
+            .get(`/api/v1/${this.state.userId}`)
             .then(res => {
                 this.setState({currentUser: res.data})
             })
@@ -38,7 +39,7 @@ class SingleUser extends Component {
     updateUser = (e) => {
         e.preventDefault()
         axios
-            .put(`/api/v1/${this.props.match.params.id}`, {
+            .put(`/api/v1/${this.state.userId}`, {
                 email: this.state.currentUser.email,
                 password: this.state.currentUser.password,
                 displayName: this.state.currentUser.displayName,
@@ -50,7 +51,7 @@ class SingleUser extends Component {
 
     deleteUser =() => {
         axios
-            .delete(`/api/v1/${this.props.match.params.id}`)
+            .delete(`/api/v1/${this.state.userId}`)
             .then(res => {
                 this.setState({redirectToHome: true})
             })
@@ -107,7 +108,7 @@ class SingleUser extends Component {
                         <button onClick = {this.deleteUser}>Delete</button>
                     </div>
                 }
-                <Link to = {`{this.state.currentUser._id}/medicines`}>{this.state.currentUser.displayName}'s Medicines</Link>
+                <Link to = {`${this.state.userId}/medicines`} params = {{userId: this.state.userId}} >{this.state.currentUser.displayName}'s Medicines</Link>
             </div>
         );
     }

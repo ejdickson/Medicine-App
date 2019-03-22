@@ -16,9 +16,9 @@ class App extends Component {
           <Navigation />
           <Switch>
             <Route exact path = "/" component = { UsersList } />
-            <Route exact path = "/:id" component = { SingleUser } />
-            <Route exact path = "/:id/medicines" component = { MedicineList } />
-            <Route exact path = "/:id/medicines/:id" component = { SingleMedicine } />
+            <Route exact path = "/:userId" component = { SingleUser } />
+            <Route exact path = "/:userId/medicines" component = { MedicineList } />
+            <Route exact path = "/:userId/medicines/:medicineId" component = { SingleMedicine } />
           </Switch>
           <MyFooter />
         </div>

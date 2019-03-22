@@ -4,8 +4,8 @@ const Schema = mongoose.Schema
 const MedicineSchema = new Schema({
     name: String,
     description: String,
-    dosage: Number,
-    amountRemaining: Number,
+    dosage: String,
+    amountRemaining: String,
     needRefill: {
         type: Boolean,
         default: false
