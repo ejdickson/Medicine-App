@@ -108,7 +108,7 @@ class SingleUser extends Component {
                         <button onClick = {this.deleteUser}>Delete</button>
                     </div>
                 }
-                <Link to = {`${this.state.userId}/medicines`} params = {{userId: this.state.userId}} >{this.state.currentUser.displayName}'s Medicines</Link>
+                <Link to = {`${this.state.userId}/medicines`} >{this.state.currentUser.displayName}'s Medicines</Link>
             </div>
         );
     }

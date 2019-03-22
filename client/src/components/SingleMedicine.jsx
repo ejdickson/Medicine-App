@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 
 class SingleMedicine extends Component {
@@ -134,6 +134,7 @@ class SingleMedicine extends Component {
                         </div>
                     </div>
                 }
+                <Link to = {`/${this.state.userId}/medicines`} >Back To Medicines</Link>
             </div>
         );
     }
