@@ -5,6 +5,7 @@ import axios from 'axios'
 class SingleUser extends Component {
     state = {
         currentUser: {
+            _id: '',
             email: '',
             password: '',
             displayName: '',
@@ -106,6 +107,7 @@ class SingleUser extends Component {
                         <button onClick = {this.deleteUser}>Delete</button>
                     </div>
                 }
+                <Link to = {`{this.state.currentUser._id}/medicines`}>{this.state.currentUser.displayName}'s Medicines</Link>
             </div>
         );
     }
