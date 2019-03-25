@@ -9,7 +9,8 @@ import SingleMedicine from './components/SingleMedicine'
 import MyFooter from './components/MyFooter'
 
 const PageView = styled.div `
-  margin: 0px 0px 150px 0px;
+  margin: 0 auto;
+  margin-bottom: 150px;
 `
 
 class App extends Component {
