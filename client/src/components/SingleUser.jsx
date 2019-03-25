@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import styled from 'styled-components'
+
+const ButtonStyled = styled.button `
+    border-radius: 5px;
+    padding: 15px 25px;
+    font-size: 18px;
+    text-decoration: none;
+    margin: 20px;
+`
 
 class SingleUser extends Component {
     state = {
-        userId: this.props.match.params.userId,
+        userId: this.props.userId,
         currentUser: {
             _id: '',
             email: '',
@@ -64,8 +73,7 @@ class SingleUser extends Component {
 
         return (
             <div>
-                <h1>Single User Page with weekly view of medicines</h1>
-                <button onClick = {this.toggleEditForm}>Edit Your User Information</button>
+                <h3 className="text-center">{this.state.currentUser.displayName}</h3>
                 {
                     this.state.displayEditForm
                     ? <form onSubmit = {this.updateUser}>
@@ -99,16 +107,21 @@ class SingleUser extends Component {
                                 value={this.state.currentUser.displayName}
                             />
                         </div>
-                        <button>Update!</button>
+                        <ButtonStyled className="green lighten-3">Update!</ButtonStyled>
                     </form>
                     : <div>
                         <div>
-                            Name: {this.state.currentUser.displayName}
+                            <p>Name: {this.state.currentUser.displayName}</p>
+                            <p>Email: {this.state.currentUser.email}</p>
+                            <p>Preferred Pharamcy: </p>
                         </div>
-                        <button onClick = {this.deleteUser}>Delete</button>
-                    </div>
+                    </div> 
                 }
-                <Link to = {`${this.state.userId}/medicines`} >{this.state.currentUser.displayName}'s Medicines</Link>
+                <div className="row">
+                    <ButtonStyled className="btn-small" onClick = {this.toggleEditForm}>Edit</ButtonStyled>
+                    <ButtonStyled onClick = {this.deleteUser} className="btn-small">Delete</ButtonStyled>
+                </div>
+                
             </div>
         );
     }

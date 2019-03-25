@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
+import styled from 'styled-components'
+
+const ButtonStyled = styled.button `
+    border-radius: 5px;
+    padding: 15px 25px;
+    font-size: 18px;
+    text-decoration: none;
+    margin: 20px;
+`
 
 class SingleMedicine extends Component {
     state = {
@@ -28,6 +37,12 @@ class SingleMedicine extends Component {
     toggleEditForm = () => {
         this.setState((state, props) => {
             return ({displayEditForm: !state.displayEditForm})
+        })
+    }
+
+    checkNeedRefill = () => {
+        this.setState((state, props) => {
+            return ({needRefill: true})
         })
     }
 
@@ -63,12 +78,11 @@ class SingleMedicine extends Component {
 
     render() {
         if (this.state.redirectToUser) {
-            return (<Redirect to={`/${this.state.userId}/medicines`}/>)
+            return (<Redirect to={`/${this.state.userId}/`}/>)
         }
         return (
             <div>
-                <h1>Single Medicine page with more details</h1>
-                <button onClick = {this.toggleEditForm}>Edit Medicine Listing</button>
+                <h3 className="text-center">{this.state.medicine.name}</h3>
                 {
                     this.state.displayEditForm
                     ? <form onSubmit = {this.updateMedicine}>
@@ -103,7 +117,7 @@ class SingleMedicine extends Component {
                             />
                         </div>
                         <div>
-                            <label htmlFor="amountRemaining">Amount amountRemaining</label>
+                            <label htmlFor="amountRemaining">Amount Remaining</label>
                             <input
                                 id="amountRemaining"
                                 type="text"
@@ -112,29 +126,34 @@ class SingleMedicine extends Component {
                                 value={this.state.medicine.amountRemaining}
                             />
                         </div>
-                        <button>Submit</button>
+                        <ButtonStyled>Submit</ButtonStyled>
                     </form>
                     : <div>
-                        <div>
-                            Name: {this.state.medicine.name}
+                        <div className="col">
+                            <p>Name: {this.state.medicine.name}</p>
+                            <p>Description: {this.state.medicine.description}</p>
+                            <div className="row">
+                                <p>Dosage: {this.state.medicine.dosage}</p>
+                                <p>Amount Remaining: {this.state.medicine.amountRemaining}</p>
+                            </div>
                         </div>
+                        
                         <div>
-                            Description: {this.state.medicine.description}
+                            {
+                                this.state.medicine.needRefill
+                                ? <div>
+                                    You will need a refill soon. Contact your preferred pharamacy.
+                                </div>
+                                : null
+                            }
                         </div>
-                        <div>
-                            Dosage: {this.state.medicine.dosage}
-                            Amount Remaining: {this.state.medicine.amountRemaining}
-                        </div>
-                        <div>
-                            Need Refill?
-                        </div>
-                        <div>
-                            No longer taking this medicine?
-                            <button onClick={this.deleteMedicine}>Delete Medicine</button>
+                        <div className="row">
+                            <ButtonStyled onClick = {this.toggleEditForm}>Edit Medicine Listing</ButtonStyled>
+                            <ButtonStyled onClick={this.deleteMedicine}>Delete Medicine</ButtonStyled>
                         </div>
                     </div>
                 }
-                <Link to = {`/${this.state.userId}/medicines`} >Back To Medicines</Link>
+                <Link to = {`/${this.state.userId}/`} >Back To Medicines</Link>
             </div>
         );
     }

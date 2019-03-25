@@ -1,13 +1,33 @@
 import React, { Component } from 'react';
 import { Footer } from 'react-materialize'
 
+import styled from 'styled-components'
+
+const PageStyle = styled.div`
+  width: 100%;
+  bottom: 0;
+  position: fixed;
+
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+`
+
 class MyFooter extends Component {
     render() {
         return (
-            <Footer copyrights="2019 Dickson-Designs" className='example'>
-                <h5 className="white-text">Dickson-Designs</h5>
-                <p className="grey-text text-lighten-4">Description of why built</p>
-            </Footer>
+            <PageStyle>
+                <Footer className="green lighten-1 white-text" copyrights="2019 Dickson-Designs">
+                    <h6 className=""><a className="white-text" href="http://dickson-designs.com">Dickson-Designs Project 3: Medicine App</a></h6>
+                </Footer>
+            </PageStyle>
+            
         )
     }
 }

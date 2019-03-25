@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+
+const ButtonStyled = styled.button `
+    border-radius: 5px;
+    padding: 15px 25px;
+    font-size: 22px;
+    text-decoration: none;
+    margin: 20px;
+`
 
 class UsersList extends Component {
     state = {
@@ -61,17 +70,17 @@ class UsersList extends Component {
     render() {
         return (
             <div>
-                <h1>Main Landing Page with list of users</h1>
+                <h3>Select User Account</h3>
                 { 
                     this.state.users.map(user => {
                         return (
                             <div key = {user._id}>
-                                <Link to = {`/${user._id}`}>{user.displayName}</Link>
+                                <ButtonStyled className="green lighten-3 btn-large"><Link to = {`/${user._id}`} className="white-text">{user.displayName}</Link></ButtonStyled>
                             </div>
                         )
                     })
                 }
-                <button onClick = {this.toggleUserForm}>Sign Up</button>
+                <ButtonStyled onClick = {this.toggleUserForm} className="btn-small"><i className="material-icons left">person_add</i>Sign Up</ButtonStyled>
                 { 
                     this.state.displayUserForm
                         ? <form onSubmit = {this.createUser}>
@@ -105,7 +114,7 @@ class UsersList extends Component {
                                     value={this.state.newUser.displayName}
                                 />
                             </div>
-                            <button>Sign Up!</button>
+                            <ButtonStyled>Save Account!</ButtonStyled>
                         </form>
                         : null
                 }

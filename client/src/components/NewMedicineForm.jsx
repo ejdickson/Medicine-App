@@ -1,43 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
 
-const ButtonStyled = styled.button `
-    border-radius: 5px;
-    padding: 15px 25px;
-    font-size: 22px;
-    text-decoration: none;
-    margin: 20px;
-`
-
-class MedicinesList extends Component {
+class NewMedicineForm extends Component {
     state = {
         userId: this.props.userId,
-        medicines: [],
+        medicines: this.props.medicines,
         newMedicine: {
             name: '',
             description: '',
             dosage: '',
             amountRemaining: '',
             needRefill: false,
-        },
-        displayMedicineForm: false
-    }
-
-    componentDidMount = () => {
-         axios
-            .get(`/api/v1/${this.state.userId}/medicines`)
-            .then(res => {
-                console.log(res.data)
-                this.setState({ medicines: res.data})
-            })
-    }
-
-    toggleMedicineForm = () => {
-        this.setState((state, props) => {
-            return ({displayMedicineForm: !state.displayMedicineForm})
-        })
+        }
     }
 
     handleChange = (e) => {
@@ -76,14 +50,7 @@ class MedicinesList extends Component {
     render() {
         return (
             <div>
-                <h3>Medicines</h3>
-                <ButtonStyled onClick = {this.toggleMedicineForm}>
-                    <i className="small material-icons">add_circle</i>
-                    New Medicine
-                </ButtonStyled>
-                {
-                    this.state.displayMedicineForm
-                    ? <form onSubmit={this.createMedicine}>
+                <form onSubmit={this.createMedicine}>
                         <div>
                             <label htmlFor="name">Name</label>
                             <input
@@ -124,25 +91,11 @@ class MedicinesList extends Component {
                                 value={this.state.newMedicine.amountRemaining}
                             />
                         </div>
-                        <ButtonStyled>Submit</ButtonStyled>
+                        <button>Submit</button>
                     </form>
-                    : null
-                }
-                {
-                    this.state.medicines.map(medicine => {
-                        return (
-                            <div key = {medicine._id}>
-                                <ButtonStyled className="green lighten-3 btn-large">
-                                    <Link to ={`/${this.state.userId}/medicines/${medicine._id}`} className="white-text">{medicine.name}</Link>
-                                </ButtonStyled>   
-                            </div>
-                        )
-                    })
-                }
-
             </div>
         );
     }
 }
 
-export default MedicinesList;
+export default NewMedicineForm;
