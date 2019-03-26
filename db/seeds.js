@@ -56,7 +56,7 @@ const user1 = new User({
     displayName: 'user1',
     email: 'user1@test.com',
     password: 'test1234',
-    preferredPharmacy: publix,
+    pharmacy: publix,
     medicines: [medicine1, medicine2],
 })
 

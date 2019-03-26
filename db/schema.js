@@ -2,14 +2,14 @@ const mongoose = require('../db/connection')
 const Schema = mongoose.Schema
 
 const DosageSchema = new Schema({
-    number: Number,
+    number: String,
     measurement: String,
     asNeeded: {
         type: Boolean,
         default: false
     },
     daily: {
-        hourly: Number,
+        hourly: String,
         morning: {
             type: Boolean,
             default: false
@@ -42,18 +42,33 @@ const MedicineSchema = new Schema({
 })
 
 const PharmacySchema = new Schema({
-    name: String,
-    addressStreet: String,
-    addressCity: String,
-    addressState: String,
-    addressZipcode: String,
+    name: {
+        type: String,
+        default: ''
+    },
+    addressStreet: {
+        type: String,
+        default: ''
+    },
+    addressCity: {
+        type: String,
+        default: ''
+    },
+    addressState: {
+        type: String,
+        default: ''
+    },
+    addressZipcode: {
+        type: String,
+        default: ''
+    }
 })
 
 const UserSchema = new Schema({
     displayName: String,
     email: String,
     password: String,
-    preferredPharamacy: PharmacySchema,
+    pharmacy: PharmacySchema,
     medicines: [MedicineSchema],
 })
 

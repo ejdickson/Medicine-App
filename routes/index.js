@@ -3,6 +3,7 @@ const router = express.Router()
 
 const userController = require('../controllers/userController')
 const medicineController = require('../controllers/medicineController')
+const dosageController = require('../controllers/dosageController')
 
 router.get('/', userController.index)
 router.post('/', userController.create)
@@ -15,5 +16,8 @@ router.post('/:userId/medicines', medicineController.create)
 router.get('/:userId/medicines/:medicineId', medicineController.show)
 router.put('/:userId/medicines/:medicineId', medicineController.update)
 router.delete('/:userId/medicines/:medicineId', medicineController.delete)
+
+router.get('/:userId/medicines/:medicineId/:dosageId', dosageController.show)
+router.put('/:userId/medicines/:medicineId/:dosageId', dosageController.update)
 
 module.exports = router
