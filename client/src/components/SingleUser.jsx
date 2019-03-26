@@ -19,7 +19,14 @@ class SingleUser extends Component {
             email: '',
             password: '',
             displayName: '',
-            medicines: []
+            medicines: [],
+            preferredPharmacy: {
+                name: '',
+                addressStreet: '',
+                addressCity: '',
+                addressState: '',
+                addressZipcode: '',
+            }
         },
         redirectToHome: false,
         displayEditForm: false
@@ -113,7 +120,7 @@ class SingleUser extends Component {
                         <div>
                             <p>Name: {this.state.currentUser.displayName}</p>
                             <p>Email: {this.state.currentUser.email}</p>
-                            <p>Preferred Pharamcy: </p>
+                            <p>Preferred Pharamacy: </p>
                         </div>
                     </div> 
                 }
