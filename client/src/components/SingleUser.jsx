@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 
+import Pharmacy from './Pharmacy'
+
 const ButtonStyled = styled.button `
     border-radius: 5px;
     padding: 15px 25px;
@@ -16,10 +18,11 @@ class SingleUser extends Component {
         userId: this.props.userId,
         currentUser: {
             _id: '',
+            displayName: '',
             email: '',
             password: '',
-            displayName: '',
-            medicines: []
+            pharmacy: {},
+            medicines: [],
         },
         redirectToHome: false,
         displayEditForm: false
@@ -78,6 +81,16 @@ class SingleUser extends Component {
                     this.state.displayEditForm
                     ? <form onSubmit = {this.updateUser}>
                         <div>
+                            <label htmlFor="displayName">Display Name</label>
+                            <input
+                                id="displayName"
+                                type="text"
+                                name="displayName"
+                                onChange={this.handleChange}
+                                value={this.state.currentUser.displayName}
+                            />
+                        </div>
+                        <div>
                             <label htmlFor="email">Email</label>
                             <input
                                 id="email"
@@ -97,23 +110,11 @@ class SingleUser extends Component {
                                 value={this.state.currentUser.password}
                             />
                         </div>
-                        <div>
-                            <label htmlFor="displayName">Display Name</label>
-                            <input
-                                id="displayName"
-                                type="text"
-                                name="displayName"
-                                onChange={this.handleChange}
-                                value={this.state.currentUser.displayName}
-                            />
-                        </div>
                         <ButtonStyled className="green lighten-3">Update!</ButtonStyled>
                     </form>
                     : <div>
                         <div>
-                            <p>Name: {this.state.currentUser.displayName}</p>
-                            <p>Email: {this.state.currentUser.email}</p>
-                            <p>Preferred Pharamcy: </p>
+                            <Pharmacy userId={this.state.userId} pharmacyId={this.state.currentUser.pharmacy._id} />
                         </div>
                     </div> 
                 }

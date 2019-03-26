@@ -14,11 +14,14 @@ const ButtonStyled = styled.button `
 class SingleMedicine extends Component {
     state = {
         medicine: {
-            name: '',
+            nameCommon: '',
+            namePrescription: '',
             description: '',
-            dosage: '',
-            amountRemaining: '',
-            needRefill: false
+            prescribingDoctor: '',
+            overTheCounter: false,
+            dosage: {
+                
+            }
         },
         redirectToUser: false,
         displayEditForm: false,
@@ -40,12 +43,6 @@ class SingleMedicine extends Component {
         })
     }
 
-    checkNeedRefill = () => {
-        this.setState((state, props) => {
-            return ({needRefill: true})
-        })
-    }
-
     handleChange = (e) => {
         const updatedMedicine = {...this.state.medicine}
         updatedMedicine[e.target.name] = e.target.value
@@ -60,7 +57,6 @@ class SingleMedicine extends Component {
                 description: this.state.medicine.description,
                 dosage: this.state.medicine.dosage,
                 amountRemaining: this.state.medicine.amountRemaining,
-                needRefill: false
             })
             .then(res => {
                 this.setState({medicine: res.data, displayEditForm: false})

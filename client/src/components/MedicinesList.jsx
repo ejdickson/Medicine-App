@@ -16,11 +16,12 @@ class MedicinesList extends Component {
         userId: this.props.userId,
         medicines: [],
         newMedicine: {
-            name: '',
+            nameCommon: '',
+            namePrescription: '',
             description: '',
-            dosage: '',
-            amountRemaining: '',
-            needRefill: false,
+            prescribingDoctor: '',
+            overTheCounter: false,
+            dosage: {}
         },
         displayMedicineForm: false
     }
@@ -50,22 +51,24 @@ class MedicinesList extends Component {
         e.preventDefault()
         axios
             .post(`/api/v1/${this.state.userId}/medicines`, {
-                name: this.state.newMedicine.name,
+                nameCommon: this.state.newMedicine.nameCommon,
+                namePrescription: this.state.newMedicine.namePrescription,
                 description: this.state.newMedicine.description,
-                dosage: this.state.newMedicine.dosage,
-                amountRemaining: this.state.newMedicine.amountRemaining,
-                needRefill: false
+                prescribingDoctor: this.state.newMedicine.prescribingDoctor,
+                overTheCounter: false,
+                dosage: {},
             })
             .then(res => {
                 const medicinesList = [...this.state.medicines]
                 medicinesList.unshift(res.data)
                 this.setState({
                     newMedicine: {
-                        name: '',
+                        nameCommon: '',
+                        namePrescription: '',
                         description: '',
-                        dosage: '',
-                        amountRemaining: '',
-                        needRefill: false,
+                        prescribingDoctor: '',
+                        overTheCounter: false,
+                        dosage: {}
                     },
                     displayMedicineForm: false,
                     medicines: medicinesList
@@ -133,7 +136,7 @@ class MedicinesList extends Component {
                         return (
                             <div key = {medicine._id}>
                                 <ButtonStyled className="green lighten-3 btn-large">
-                                    <Link to ={`/${this.state.userId}/medicines/${medicine._id}`} className="white-text">{medicine.name}</Link>
+                                    <Link to ={`/${this.state.userId}/medicines/${medicine._id}`} className="white-text">{medicine.nameCommon}</Link>
                                 </ButtonStyled>   
                             </div>
                         )
