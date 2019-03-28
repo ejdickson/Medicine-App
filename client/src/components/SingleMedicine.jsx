@@ -3,6 +3,8 @@ import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 
+import Dosage from './Dosage'
+
 const ButtonStyled = styled.button `
     border-radius: 5px;
     padding: 15px 25px;
@@ -19,9 +21,7 @@ class SingleMedicine extends Component {
             description: '',
             prescribingDoctor: '',
             overTheCounter: false,
-            dosage: {
-                
-            }
+            dosage: {}
         },
         redirectToUser: false,
         displayEditForm: false,
@@ -29,12 +29,16 @@ class SingleMedicine extends Component {
         medicineId: this.props.match.params.medicineId
     }
 
-    componentDidMount = () => {
+    getMedicineData = () => {
         axios
             .get(`/api/v1/${this.state.userId}/medicines/${this.state.medicineId}`)
             .then(res => {
                 this.setState({medicine: res.data})
             })
+    }
+
+    componentDidMount = () => {
+        this.getMedicineData()
     }
 
     toggleEditForm = () => {
@@ -53,14 +57,16 @@ class SingleMedicine extends Component {
         e.preventDefault()
         axios
             .put(`/api/v1/${this.state.userId}/medicines/${this.state.medicineId}`, {
-                name: this.state.medicine.name,
+                nameCommon: this.state.medicine.nameCommon,
+                namePrescription: this.state.medicine.namePrescription,
                 description: this.state.medicine.description,
-                dosage: this.state.medicine.dosage,
-                amountRemaining: this.state.medicine.amountRemaining,
+                prescribingDoctor: this.state.medicine.prescribingDoctor,
+                overTheCounter: this.state.medicine.overTheCounter
             })
             .then(res => {
                 this.setState({medicine: res.data, displayEditForm: false})
             })
+        this.getMedicineData()
     }
 
     deleteMedicine = () => {
@@ -81,67 +87,105 @@ class SingleMedicine extends Component {
                 <h3 className="text-center">{this.state.medicine.name}</h3>
                 {
                     this.state.displayEditForm
-                    ? <form onSubmit = {this.updateMedicine}>
-                        <div>
-                            <label htmlFor="name">Name</label>
-                            <input
-                                id="name"
-                                type="text"
-                                name="name"
-                                onChange={this.handleChange}
-                                value={this.state.medicine.name}
-                            />
+                    ? <form onSubmit = {this.updateMedicine} className="col s12">
+                        <div className="row">
+                            <div className="col s12 m6">
+                                <label htmlFor="nameCommon">Common Name</label>
+                                <input
+                                    id="nameCommon"
+                                    type="text"
+                                    name="nameCommon"
+                                    onChange={this.handleChange}
+                                    value={this.state.medicine.nameCommon}
+                                />
+                            </div>  
+                            <div className="col s12 m6">
+                                <label htmlFor="namePrescription">Prescription Name</label>
+                                <input
+                                    id="namePrescription"
+                                    type="text"
+                                    name="namePrescription"
+                                    onChange={this.handleChange}
+                                    value={this.state.medicine.namePrescription}
+                                />
+                            </div> 
                         </div>
-                        <div>
-                            <label htmlFor="description">Description</label>
-                            <input
-                                id="description"
-                                type="text"
-                                name="description"
-                                onChange={this.handleChange}
-                                value={this.state.medicine.description}
-                            />
+                        <div className="row">
+                            <div className="col s12">
+                                <label htmlFor="description">Description</label>
+                                <input
+                                    id="description"
+                                    type="text"
+                                    name="description"
+                                    onChange={this.handleChange}
+                                    defaultValue={this.state.medicine.description}
+                                />
+                            </div>
                         </div>
-                        <div>
-                            <label htmlFor="dosage">Dosage</label>
-                            <input
-                                id="dosage"
-                                type="text"
-                                name="dosage"
-                                onChange={this.handleChange}
-                                value={this.state.medicine.dosage}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="amountRemaining">Amount Remaining</label>
-                            <input
-                                id="amountRemaining"
-                                type="text"
-                                name="amountRemaining"
-                                onChange={this.handleChange}
-                                value={this.state.medicine.amountRemaining}
-                            />
+                        <div className="row">
+                            <div className="col s8">
+                                <label htmlFor="prescribingDoctor">Prescribed By</label>
+                                <input
+                                    id="prescribingDoctor"
+                                    type="text"
+                                    name="prescribingDoctor"
+                                    onChange={this.handleChange}
+                                    value={this.state.medicine.prescribingDoctor}
+                                />
+                            </div>  
+                            <div className="col s4">
+                                <label>
+                                    <input 
+                                        type="checkbox" 
+                                        value={this.state.medicine.overTheCounter}
+                                        />
+                                    <span>Over The Counter? </span>
+                                </label>
+                            </div> 
                         </div>
                         <ButtonStyled>Submit</ButtonStyled>
                     </form>
                     : <div>
-                        <div className="col">
-                            <p>Name: {this.state.medicine.name}</p>
-                            <p>Description: {this.state.medicine.description}</p>
+                        <div className="col s12 m12">
                             <div className="row">
-                                <p>Dosage: {this.state.medicine.dosage}</p>
-                                <p>Amount Remaining: {this.state.medicine.amountRemaining}</p>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            {
-                                this.state.medicine.needRefill
-                                ? <div>
-                                    You will need a refill soon. Contact your preferred pharamacy.
+                                <div className="col s12 m6">
+                                    <p>Common Name: {this.state.medicine.nameCommon}</p>
                                 </div>
-                                : null
-                            }
+                                <div className="col s12 m6">
+                                    <p>Prescription Name: {this.state.medicine.namePrescription}</p>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col sm12 md12">
+                                    <p>Description: {this.state.medicine.description}</p>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col s12 m6">
+                                    <p>Prescribed By: {this.state.medicine.prescribingDoctor}</p>
+                                </div>
+                                <div className="col s12 m6">
+                                {
+                                    this.state.medicine.overTheCounter
+                                    ? <p>
+                                        <label>
+                                        <input type="checkbox" checked="checked" disabled="disabled" />
+                                        <span>Over The Counter</span>
+                                        </label>
+                                    </p>
+                                    :<p>
+                                        <label>
+                                        <input type="checkbox" disabled="disabled" />
+                                        <span>Over The Counter</span>
+                                        </label>
+                                    </p>
+                                }
+                                </div>
+                            </div>
+                            <hr/>
+                            <Dosage 
+                                userId={this.state.userId}
+                                medicineId={this.state.medicineId} />
                         </div>
                         <div className="row">
                             <ButtonStyled onClick = {this.toggleEditForm}>Edit Medicine Listing</ButtonStyled>

@@ -8,24 +8,21 @@ const Medicine = require('../models/Medicine')
 const Dosage = require('../models/Dosage')
 
 const med1Dose = new Dosage({
-    number: 25,
+    number: '25',
     measurement: 'mg',
     asNeeded: false,
-    daily: {
-        hourly: 6,
-    }
+    hourly: true,
+    hours: '6',
 })
 
 const med2Dose = new Dosage({
-    number: 1,
+    number: '1',
     measurement: 'tablet',
     asNeeded: false,
-    daily: {
-        morning: true,
-        afternoon: false,
-        evening: true,
-        bedTime: false
-    }
+    morning: true,
+    afternoon: false,
+    evening: true,
+    bedTime: false
 })
 
 const medicine1 = new Medicine({

@@ -26,13 +26,17 @@ class MedicinesList extends Component {
         displayMedicineForm: false
     }
 
-    componentDidMount = () => {
-         axios
+    getAllMedicines = () => {
+        axios
             .get(`/api/v1/${this.state.userId}/medicines`)
             .then(res => {
                 console.log(res.data)
                 this.setState({ medicines: res.data})
             })
+    }
+
+    componentDidMount = () => {
+        this.getAllMedicines()
     }
 
     toggleMedicineForm = () => {
@@ -74,6 +78,7 @@ class MedicinesList extends Component {
                     medicines: medicinesList
                 })
             })
+        this.getAllMedicines()
     }
 
     render() {
@@ -86,18 +91,30 @@ class MedicinesList extends Component {
                 </ButtonStyled>
                 {
                     this.state.displayMedicineForm
-                    ? <form onSubmit={this.createMedicine}>
-                        <div>
-                            <label htmlFor="name">Name</label>
-                            <input
-                                id="name"
-                                type="text"
-                                name="name"
-                                onChange={this.handleChange}
-                                value={this.state.newMedicine.name}
-                            />
+                    ? <form onSubmit={this.createMedicine} className="col s12">
+                        <div className="row">
+                            <div className="col s12 m6">
+                                <label htmlFor="nameCommon">Common Name</label>
+                                <input
+                                    id="nameCommon"
+                                    type="text"
+                                    name="nameCommon"
+                                    onChange={this.handleChange}
+                                    value={this.state.newMedicine.nameCommon}
+                                />
+                            </div>
+                            <div className="col s12 m6">
+                                <label htmlFor="namePrescription">Prescription Name</label>
+                                <input
+                                    id="namePrescription"
+                                    type="text"
+                                    name="namePrescription"
+                                    onChange={this.handleChange}
+                                    value={this.state.newMedicine.namePrescription}
+                                />
+                            </div>
                         </div>
-                        <div>
+                        <div className="col s12">
                             <label htmlFor="description">Description</label>
                             <input
                                 id="description"
@@ -107,26 +124,28 @@ class MedicinesList extends Component {
                                 value={this.state.newMedicine.description}
                             />
                         </div>
-                        <div>
-                            <label htmlFor="dosage">Dosage</label>
-                            <input
-                                id="dosage"
-                                type="text"
-                                name="dosage"
-                                onChange={this.handleChange}
-                                value={this.state.newMedicine.dosage}
-                            />
+                        <div className="row">
+                            <div className="col s8">
+                                <label htmlFor="prescribingDoctor">Prescribed By</label>
+                                <input
+                                    id="prescribingDoctor"
+                                    type="text"
+                                    name="prescribingDoctor"
+                                    onChange={this.handleChange}
+                                    value={this.state.newMedicine.prescribingDoctor}
+                                />
+                            </div>
+                            <div className="col s4">
+                                <p>
+                                    <input 
+                                        type="checkbox"
+                                        name="overTheCounter" 
+                                        />
+                                    <span>Over The Counter?</span>
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <label htmlFor="amountRemaining">Amount Remaining</label>
-                            <input
-                                id="amountRemaining"
-                                type="text"
-                                name="amountRemaining"
-                                onChange={this.handleChange}
-                                value={this.state.newMedicine.amountRemaining}
-                            />
-                        </div>
+                        
                         <ButtonStyled>Submit</ButtonStyled>
                     </form>
                     : null

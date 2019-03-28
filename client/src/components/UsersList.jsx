@@ -23,12 +23,16 @@ class UsersList extends Component {
         displayUserForm: false
     }
 
-    componentDidMount = () => {
+    getAllUsers = () => {
         axios
             .get('/api/v1')
             .then(res => {
                 this.setState({ users: res.data})
             })
+    }
+
+    componentDidMount = () => {
+        this.getAllUsers()
     }
 
     toggleUserForm = () => {
@@ -65,6 +69,7 @@ class UsersList extends Component {
                     users: usersList
                 })
             })
+        this.getAllUsers()
     }
 
     render() {
@@ -83,8 +88,8 @@ class UsersList extends Component {
                 <ButtonStyled onClick = {this.toggleUserForm} className="btn-small"><i className="material-icons left">person_add</i>Sign Up</ButtonStyled>
                 { 
                     this.state.displayUserForm
-                        ? <form onSubmit = {this.createUser}>
-                            <div>
+                        ? <form onSubmit = {this.createUser} className="col s12">
+                            <div className="row">
                                 <label htmlFor="email">Email</label>
                                 <input
                                     id="email"
@@ -94,7 +99,7 @@ class UsersList extends Component {
                                     value={this.state.newUser.email}
                                 />
                             </div>
-                            <div>
+                            <div className="row">
                                 <label htmlFor="password">Password</label>
                                 <input
                                     id="password"
@@ -104,7 +109,7 @@ class UsersList extends Component {
                                     value={this.state.newUser.password}
                                 />
                             </div>
-                            <div>
+                            <div className="row">
                                 <label htmlFor="displayName">Display Name</label>
                                 <input
                                     id="displayName"

@@ -8,24 +8,26 @@ const DosageSchema = new Schema({
         type: Boolean,
         default: false
     },
-    daily: {
-        hourly: String,
-        morning: {
-            type: Boolean,
-            default: false
-        },
-        afternoon: {
-            type: Boolean,
-            default: false
-        },
-        evening: {
-            type: Boolean,
-            default: false
-        },
-        bedTime: {
-            type: Boolean,
-            default: false
-        }
+    hourly: {
+        type: Boolean,
+        default: false
+    },
+    hours: String,
+    morning: {
+        type: Boolean,
+        default: false
+    },
+    afternoon: {
+        type: Boolean,
+        default: false
+    },
+    evening: {
+        type: Boolean,
+        default: false
+    },
+    bedTime: {
+        type: Boolean,
+        default: false
     }
 })
 

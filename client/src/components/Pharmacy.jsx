@@ -24,12 +24,16 @@ class Pharmacy extends Component {
         displayPharmacyForm: false
     }
 
-    componentDidMount = () => {
+    getPharmacyData = () => {
         axios
             .get(`/api/v1/${this.state.userId}`)
             .then(res => {
                 this.setState({pharmacy: res.data.pharmacy})
             })
+    }
+
+    componentDidMount = () => {
+        this.getPharmacyData()
     }
 
     togglePharmacyForm = () => {
@@ -59,14 +63,15 @@ class Pharmacy extends Component {
             .then(res => {
                 this.setState({pharmacy: res.data.pharmacy, displayPharmacyForm: false})
             })
+        this.getPharmacyData()
     }
 
     render() {
         return (
-            <div>
+            <div className="col s12">
                 { 
                     this.state.displayPharmacyForm
-                    ? <form onSubmit = {this.updatePharmacy} className="col">
+                    ? <form onSubmit = {this.updatePharmacy} className="col s12">
                         <div>
                             <label htmlFor="name">Name of Pharmacy</label>
                             <input
@@ -88,7 +93,7 @@ class Pharmacy extends Component {
                             />
                         </div>
                         <div className="row">
-                            <div>
+                            <div className="col s6">
                                 <label htmlFor="addressCity">City</label>
                                 <input
                                     id="addressCity"
@@ -98,7 +103,7 @@ class Pharmacy extends Component {
                                     value={this.state.pharmacy.addressCity}
                                 />
                             </div>
-                            <div>
+                            <div className="col s3">
                                 <label htmlFor="addressState">State</label>
                                 <input
                                     id="addressState"
@@ -108,7 +113,7 @@ class Pharmacy extends Component {
                                     value={this.state.pharmacy.addressState}
                                 />
                             </div>
-                            <div>
+                            <div className="col s3">
                                 <label htmlFor="addressZipcode">Zipcode</label>
                                 <input
                                     id="addressZipcode"
@@ -124,7 +129,8 @@ class Pharmacy extends Component {
                     : <div>
                         <h5>Preferred Pharmacy:</h5>
                         <h5>{this.state.pharmacy.name}</h5>
-                        <p>{this.state.pharmacy.addressStreet}<br/>{this.state.pharmacy.addressCity}, {this.state.pharmacy.addressState} {this.state.pharmacy.addressZipcode}</p>
+                        <p>{this.state.pharmacy.addressStreet}</p>
+                        <p>{this.state.pharmacy.addressCity}, {this.state.pharmacy.addressState} {this.state.pharmacy.addressZipcode}</p>
                     </div>
                 }
                 <ButtonStyled onClick = {this.togglePharmacyForm}>Change Your Pharmacy</ButtonStyled>
