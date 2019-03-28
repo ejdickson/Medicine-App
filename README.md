@@ -13,10 +13,8 @@ Trello Board: https://trello.com/b/ne7pJ08o/project-3-medicine-app
 Entity Relationship Diagram
 <img src= './Wireframing/ERD.png' alt='Entity Relationship Diagram'>
 
-Landing Page
 <img src= './Wireframing/LandingPage.png' alt='Landing Page Wireframing'>
 
-Single User Main Page
 <img src= './Wireframing/SingleUserPage.png' alt='Single User Wireframing'>
 
 
