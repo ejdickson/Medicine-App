@@ -17,6 +17,7 @@ Entity Relationship Diagram
 
 <img src= './Wireframing/SingleUserPage.png' alt='Single User Wireframing'>
 
+<img src= './Wireframing/SingleMedicinePage.png' alt='Single Medicine Wireframing'>
 
 ### Technologies Used:
 * Mongo

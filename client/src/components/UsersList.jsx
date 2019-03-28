@@ -18,6 +18,7 @@ class UsersList extends Component {
             email: '',
             password: '',
             displayName: '',
+            pharmacy: {},
             medicines: []
         },
         displayUserForm: false
@@ -54,6 +55,7 @@ class UsersList extends Component {
                 email: this.state.newUser.email,
                 password: this.state.newUser.password,
                 displayName: this.state.newUser.displayName,
+                pharmacy: {},
                 medicines: []
             })
             .then(res => {
@@ -63,7 +65,8 @@ class UsersList extends Component {
                     newUser: {
                         email: '',
                         password: '',
-                        displayName: ''
+                        displayName: '',
+                        pharmacy: {},
                     },
                     displayUserForm: false,
                     users: usersList
