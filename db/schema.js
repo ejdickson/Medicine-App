@@ -46,23 +46,23 @@ const MedicineSchema = new Schema({
 const PharmacySchema = new Schema({
     name: {
         type: String,
-        default: ''
+        default: 'New Pharmacy Name'
     },
     addressStreet: {
         type: String,
-        default: ''
+        default: 'Street Address'
     },
     addressCity: {
         type: String,
-        default: ''
+        default: 'City'
     },
     addressState: {
         type: String,
-        default: ''
+        default: 'State'
     },
     addressZipcode: {
         type: String,
-        default: ''
+        default: 'Zipcode'
     }
 })
 
