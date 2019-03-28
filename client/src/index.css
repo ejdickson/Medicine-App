@@ -12,3 +12,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked{
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  position: relative;
+  left: 0;
+}

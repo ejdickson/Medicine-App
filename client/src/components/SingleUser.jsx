@@ -28,12 +28,16 @@ class SingleUser extends Component {
         displayEditForm: false
     }
 
-    componentDidMount = () => {
+    getUserData = () => {
         axios
             .get(`/api/v1/${this.state.userId}`)
             .then(res => {
                 this.setState({currentUser: res.data})
             })
+    }
+
+    componentDidMount = () => {
+        this.getUserData()
     }
 
     toggleEditForm = () => {
@@ -59,6 +63,7 @@ class SingleUser extends Component {
             .then(res => {
                 this.setState({user: res.data, displayEditForm: false})
             })
+        this.getUserData()
     }
 
     deleteUser =() => {
@@ -114,7 +119,7 @@ class SingleUser extends Component {
                     </form>
                     : <div>
                         <div>
-                            <Pharmacy userId={this.state.userId} pharmacyId={this.state.currentUser.pharmacy._id} />
+                            <Pharmacy userId={this.state.userId} />
                         </div>
                     </div> 
                 }
