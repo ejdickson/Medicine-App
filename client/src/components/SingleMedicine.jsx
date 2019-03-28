@@ -147,8 +147,9 @@ class SingleMedicine extends Component {
                             </div>  
                             <div className="col s4">
                                 <label htmlFor="overTheCounter">Over The Counter?</label>
-                                {this.state.medicine.overTheCounter ?
-                                    <input
+                                {
+                                    this.state.medicine.overTheCounter 
+                                    ? <input
                                         checked
                                         id="overTheCounter"
                                         type="checkbox"
@@ -156,8 +157,7 @@ class SingleMedicine extends Component {
                                         onClick={this.checkboxOverTheCounter}
                                         value={this.state.medicine.overTheCounter}
                                     />
-                                    :
-                                    <input
+                                    : <input
                                         id="overTheCounter"
                                         type="checkbox"
                                         name="overTheCounter"

@@ -199,111 +199,146 @@ class Dosage extends Component {
                             />
                         </div>
                         <div className="col sm6">
-                            <p>
-                                <input 
+                            <label htmlFor="asNeeded">As Needed?</label>
+                            {
+                                this.state.dosage.asNeeded
+                                ? <input
+                                    checked
+                                    id="asNeeded"
                                     type="checkbox"
-                                    name="asNeeded" 
-                                    />
-                                <span>As Needed?</span>
-                            </p>
+                                    name="asNeeded"
+                                    onClick={this.checkboxAsNeeded}
+                                    value={this.state.dosage.asNeeded}
+                                />
+                                : <input
+                                    id="asNeeded"
+                                    type="checkbox"
+                                    name="asNeeded"
+                                    onClick={this.checkboxAsNeeded}
+                                    value={this.state.dosage.asNeeded}
+                                />
+                            }
                         </div>
                     </div>
                     <div className="row">
                         <div className="col s6">
-                        {
-                            this.state.dosage.morning
-                            ? <p>
-                                <label>
-                                <input type="checkbox" checked="checked" onChange={this.checkboxMorning} />
-                                <span>Morning</span>
-                                </label>
-                            </p>
-                            :<p>
-                                <label>
-                                <input type="checkbox" onChange={this.checkboxMorning} />
-                                <span>Morning</span>
-                                </label>
-                            </p>
-                        }
-                        {
-                            this.state.dosage.afternoon
-                            ? <p>
-                                <label>
-                                <input type="checkbox" checked="checked" />
-                                <span>Afternoon</span>
-                                </label>
-                            </p>
-                            :<p>
-                                <label>
-                                <input type="checkbox" />
-                                <span>Afternoon</span>
-                                </label>
-                            </p>
-                        }
-                        {
-                            this.state.dosage.evening
-                            ? <p>
-                                <label>
-                                <input type="checkbox" checked="checked" />
-                                <span>Evening</span>
-                                </label>
-                            </p>
-                            :<p>
-                                <label>
-                                <input type="checkbox" />
-                                <span>Evening</span>
-                                </label>
-                            </p>
-                        }
-                        {
-                            this.state.dosage.bedTime
-                            ? <p>
-                                <label>
-                                <input type="checkbox" checked="checked" />
-                                <span>Before Bed</span>
-                                </label>
-                            </p>
-                            :<p>
-                                <label>
-                                <input type="checkbox" />
-                                <span>Before Bed</span>
-                                </label>
-                            </p>
-                        }
+                            <div className="row">
+                                <label htmlFor="morning">Morning</label>
+                                {
+                                    this.state.dosage.morning
+                                    ? <input
+                                        checked
+                                        id="morning"
+                                        type="checkbox"
+                                        name="morning"
+                                        onClick={this.checkboxMorning}
+                                        value={this.state.dosage.morning}
+                                    />
+                                    : <input
+                                        id="morning"
+                                        type="checkbox"
+                                        name="morning"
+                                        onClick={this.checkboxMorning}
+                                        value={this.state.dosage.morning}
+                                    />
+                                }
+                            </div>
+                            <div className="row">
+                                <label htmlFor="afternoon">Afternoon</label>
+                                {
+                                    this.state.dosage.afternoon
+                                    ? <input
+                                        checked
+                                        id="afternoon"
+                                        type="checkbox"
+                                        name="afternoon"
+                                        onClick={this.checkboxAfternoon}
+                                        value={this.state.dosage.afternoon}
+                                    />
+                                    :<input
+                                        id="afternoon"
+                                        type="checkbox"
+                                        name="afternoon"
+                                        onClick={this.checkboxAfternoon}
+                                        value={this.state.dosage.afternoon}
+                                    />
+                                }
+                            </div>
+                            <div className="row">
+                                <label htmlFor="evening">Evening</label>
+                                {
+                                    this.state.dosage.evening
+                                    ? <input
+                                        checked
+                                        id="evening"
+                                        type="checkbox"
+                                        name="evening"
+                                        onClick={this.checkboxEvening}
+                                        value={this.state.dosage.evening}
+                                    />
+                                    :<input
+                                        id="evening"
+                                        type="checkbox"
+                                        name="evening"
+                                        onClick={this.checkboxEvening}
+                                        value={this.state.dosage.evening}
+                                    />
+                                }
+                            </div>
+                            <div className="row">
+                                <label htmlFor="bedTime">Before Bed</label>
+                                {
+                                    this.state.dosage.bedTime
+                                    ? <input
+                                        checked
+                                        id="bedTime"
+                                        type="checkbox"
+                                        name="evening"
+                                        onClick={this.checkboxBedTime}
+                                        value={this.state.dosage.bedTime}
+                                    />
+                                    :<input
+                                        id="bedTime"
+                                        type="checkbox"
+                                        name="evening"
+                                        onClick={this.checkboxBedTime}
+                                        value={this.state.dosage.bedTime}
+                                    />
+                                }
+                            </div>
                         </div>
                         <div className="col s6">
                             <div className="row">
-                            {
-                                this.state.dosage.hourly
-                                ? <div className="row">
-                                    <label>
-                                        <input type="checkbox" checked="checked" />
-                                    </label>
+                                <div>
                                     <label htmlFor="hourly">Every</label>
-                                        <input
+                                    {
+                                        this.state.dosage.hourly
+                                        ? <input
+                                            checked
                                             id="hourly"
-                                            type="text"
+                                            type="checkbox"
                                             name="hourly"
-                                            onChange={this.handleChange}
-                                            value={this.state.dosage.hours}
+                                            onClick={this.checkboxHourly}
+                                            value={this.state.dosage.hourly}
                                         />
-                                    <span>hour(s)</span>
-                                </div>
-                                :<div className="row">
-                                    <label>
-                                        <input type="checkbox" />
-                                    </label>
-                                    <label htmlFor="hourly">Every</label>
-                                        <input
+                                        :<input
                                             id="hourly"
-                                            type="text"
+                                            type="checkbox"
                                             name="hourly"
-                                            onChange={this.handleChange}
-                                            value={this.state.dosage.hours}
+                                            onClick={this.checkboxHourly}
+                                            value={this.state.dosage.hourly}
                                         />
-                                    <span>hour(s)</span>
+                                    }
                                 </div>
-                            }
+                                
+                                <label htmlFor="hour">hours</label>
+                                <input
+                                    id="hours"
+                                    type="text"
+                                    name="hours"
+                                    onChange={this.handleChange}
+                                    value={this.state.dosage.hours}
+                                />
                             </div>
                         </div>
                     </div>
