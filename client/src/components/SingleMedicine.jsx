@@ -53,6 +53,18 @@ class SingleMedicine extends Component {
         this.setState({medicine: updatedMedicine})
     }
 
+    checkboxOverTheCounter = () => {
+        this.setState((state, props) => {
+            return ({medicine: {
+                nameCommon: this.state.medicine.nameCommon,
+                namePrescription: this.state.medicine.namePrescription,
+                description: this.state.medicine.description,
+                prescribingDoctor: this.state.medicine.prescribingDoctor,
+                overTheCounter: !this.state.medicine.overTheCounter
+            }})
+        })
+    }
+
     updateMedicine = (e) => {
         e.preventDefault()
         axios
@@ -134,13 +146,25 @@ class SingleMedicine extends Component {
                                 />
                             </div>  
                             <div className="col s4">
-                                <label>
-                                    <input 
-                                        type="checkbox" 
+                                <label htmlFor="overTheCounter">Over The Counter?</label>
+                                {this.state.medicine.overTheCounter ?
+                                    <input
+                                        checked
+                                        id="overTheCounter"
+                                        type="checkbox"
+                                        name="overTheCounter"
+                                        onClick={this.checkboxOverTheCounter}
                                         value={this.state.medicine.overTheCounter}
-                                        />
-                                    <span>Over The Counter? </span>
-                                </label>
+                                    />
+                                    :
+                                    <input
+                                        id="overTheCounter"
+                                        type="checkbox"
+                                        name="overTheCounter"
+                                        onClick={this.checkboxOverTheCounter}
+                                        value={this.state.medicine.overTheCounter}
+                                    />
+                                }
                             </div> 
                         </div>
                         <ButtonStyled>Submit</ButtonStyled>

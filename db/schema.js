@@ -2,8 +2,14 @@ const mongoose = require('../db/connection')
 const Schema = mongoose.Schema
 
 const DosageSchema = new Schema({
-    number: String,
-    measurement: String,
+    number: {
+        type: String,
+        default: '0'
+    },
+    measurement: {
+        type: String,
+        default: 'unit'
+    },
     asNeeded: {
         type: Boolean,
         default: false

@@ -29,12 +29,16 @@ class Dosage extends Component {
         displayDosageForm: false,
     }
 
-    componentDidMount = () => {
+    getDosage = () => {
         axios
             .get(`/api/v1/${this.state.userId}/medicines/${this.state.medicineId}`)
             .then(res => {
                 this.setState({dosage: res.data.dosage})
             })
+    }
+
+    componentDidMount = () => {
+        this.getDosage()
     }
 
     toggleDosageForm = () => {
@@ -45,42 +49,98 @@ class Dosage extends Component {
 
     checkboxAsNeeded = () => {
         this.setState((state, props) => {
-            return ({dosage: {asNeeded: !this.state.dosage.asNeeded}})
+            return ({dosage: {
+                number: this.state.dosage.number,
+                measurement: this.state.dosage.measurement,
+                asNeeded: !this.state.dosage.asNeeded,
+                hourly: this.state.dosage.hourly,
+                hours: this.state.dosage.hours,
+                morning: this.state.dosage.morning,
+                afternoon: this.state.dosage.afternoon,
+                evening: this.state.dosage.evening,
+                bedTime: this.state.dosage.bedTime
+            }})
         })
     }
 
     checkboxHourly = () => {
         this.setState((state, props) => {
-            return ({dosage: {hourly: !this.state.dosage.hourly}})
+            return ({dosage: {
+                number: this.state.dosage.number,
+                measurement: this.state.dosage.measurement,
+                asNeeded: this.state.dosage.asNeeded,
+                hourly: !this.state.dosage.hourly,
+                hours: this.state.dosage.hours,
+                morning: this.state.dosage.morning,
+                afternoon: this.state.dosage.afternoon,
+                evening: this.state.dosage.evening,
+                bedTime: this.state.dosage.bedTime
+            }})
         })
     }
 
     checkboxMorning = () => {
         this.setState((state, props) => {
-            return ({dosage: {morning: !this.state.dosage.morning}})
+            return ({dosage: {
+                number: this.state.dosage.number,
+                measurement: this.state.dosage.measurement,
+                asNeeded: this.state.dosage.asNeeded,
+                hourly: this.state.dosage.hourly,
+                hours: this.state.dosage.hours,
+                morning: !this.state.dosage.morning,
+                afternoon: this.state.dosage.afternoon,
+                evening: this.state.dosage.evening,
+                bedTime: this.state.dosage.bedTime
+            }})
         })
     }
 
     checkboxAfternoon = () => {
         this.setState((state, props) => {
-            return ({dosage: {afternoon: !this.state.dosage.afternoon}})
+            return ({dosage: {
+                number: this.state.dosage.number,
+                measurement: this.state.dosage.measurement,
+                asNeeded: this.state.dosage.asNeeded,
+                hourly: this.state.dosage.hourly,
+                hours: this.state.dosage.hours,
+                morning: this.state.dosage.morning,
+                afternoon: !this.state.dosage.afternoon,
+                evening: this.state.dosage.evening,
+                bedTime: this.state.dosage.bedTime
+            }})
         })
     }
 
     checkboxEvening = () => {
         this.setState((state, props) => {
-            return ({dosage: {evening: !this.state.dosage.evening}})
+            return ({dosage: {
+                number: this.state.dosage.number,
+                measurement: this.state.dosage.measurement,
+                asNeeded: this.state.dosage.asNeeded,
+                hourly: this.state.dosage.hourly,
+                hours: this.state.dosage.hours,
+                morning: this.state.dosage.morning,
+                afternoon: this.state.dosage.afternoon,
+                evening: !this.state.dosage.evening,
+                bedTime: this.state.dosage.bedTime
+            }})
         })
     }
 
     checkboxBedTime = () => {
         this.setState((state, props) => {
-            return ({dosage: {bedTime: !this.state.dosage.bedTime}})
+            return ({dosage: {
+                number: this.state.dosage.number,
+                measurement: this.state.dosage.measurement,
+                asNeeded: this.state.dosage.asNeeded,
+                hourly: this.state.dosage.hourly,
+                hours: this.state.dosage.hours,
+                morning: this.state.dosage.morning,
+                afternoon: this.state.dosage.afternoon,
+                evening: this.state.dosage.evening,
+                bedTime: !this.state.dosage.bedTime
+            }})
         })
-    }
-
-    checkBoxTimes = (time) => {
-        this.setState({dosage: {time: !this.state.dosage.time}})
     }
 
     handleChange = (e) => {
@@ -93,19 +153,22 @@ class Dosage extends Component {
         e.preventDefault()
         axios
             .put(`/api/v1/${this.state.userId}/medicines/${this.state.medicineId}`, {
-                number: this.state.dosage.number,
-                measurement: this.state.dosage.measurement,
-                asNeeded: this.state.dosage.asNeeded,
-                hourly: this.state.dosage.hourly,
-                hours: this.state.dosage.hours,
-                morning: this.state.dosage.morning,
-                afternoon: this.state.dosage.afternoon,
-                evening: this.state.dosage.evening,
-                bedTime: this.state.dosage.bedTime
+                dosage: {
+                    number: this.state.dosage.number,
+                    measurement: this.state.dosage.measurement,
+                    asNeeded: this.state.dosage.asNeeded,
+                    hourly: this.state.dosage.hourly,
+                    hours: this.state.dosage.hours,
+                    morning: this.state.dosage.morning,
+                    afternoon: this.state.dosage.afternoon,
+                    evening: this.state.dosage.evening,
+                    bedTime: this.state.dosage.bedTime
+                }
             })
             .then(res => {
                 this.setState({dosage: res.data.dosage, displayDosageForm: false})
             })
+        this.getDosage()
     }
 
     render() {
