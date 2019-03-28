@@ -14,10 +14,10 @@ Entity Relationship Diagram
 <img src= './Wireframing/ERD.png' alt='Entity Relationship Diagram'>
 
 Landing Page
-<img src='./Wireframing/LandingPage.png' alt='Landing Page Wireframing>
+<img src= './Wireframing/LandingPage.png' alt='Landing Page Wireframing'>
 
 Single User Main Page
-<img src='./Wireframing/SingleUserPage.png' alt='Single User Wireframing>
+<img src= './Wireframing/SingleUserPage.png' alt='Single User Wireframing'>
 
 
 ### Technologies Used:
@@ -31,4 +31,5 @@ Single User Main Page
 * Sketch (Wireframing/ERDs)
 
 ### Next Version Plans:
+Due to HIPAA regulations, it is very important to add an authorization level to protect patient privacy. After that, I will be adding the option to check drug interactions with a third party API.
 
